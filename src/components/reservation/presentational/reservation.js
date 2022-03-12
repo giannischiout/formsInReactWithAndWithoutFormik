@@ -9,9 +9,9 @@ export const Reservation = ({
   cinema,
   handleChange,
   movies,
-  // auditorium,
-  // screening,
-  // seats,
+  auditorium,
+  screenings,
+  seats,
 }) => {
   return (
     <div className="container m-2">
@@ -70,6 +70,7 @@ export const Reservation = ({
             Auditorium:
           </label>
           <select
+            name = "auditorium"
             className="form-select d-inline-block mx-auto h-25 w-25"
             id="auditorium"
             aria-label=""
@@ -77,16 +78,24 @@ export const Reservation = ({
             disabled={!values.movie}
           >
             <option value="">Choose...</option>
+            {auditorium.map((auditorium) => (
+              <option key={auditorium.id} value={auditorium.id}>
+                {auditorium.id}
+              </option>
+            ))}
+            
           </select>
         </div>
+        {/* Screening */}
         <div>
           <label
             className="w-25 d-inline-block form-label mt-4"
-            htmlFor="screening"
+            htmlFor="screenings"
           >
             Screening:
           </label>
           <select
+            name = "screenings"
             className="form-select d-inline-block mx-auto h-25 w-25"
             id="screening"
             aria-label=""
@@ -94,21 +103,35 @@ export const Reservation = ({
             disabled={!values.auditorium}
           >
             <option value="">Choose...</option>
+            {screenings.map((screenings) => (
+              <option key={screenings.movie_starts} value={screenings.movie_starts}>
+                {screenings.id}
+              </option>
+            ))}
           </select>
         </div>
+        
         <div>
           <label className="w-25 d-inline-block form-label mt-4" htmlFor="seat">
             Seat:
           </label>
           <select
+            name = "seat"
             className="form-select d-inline-block mx-auto h-25 w-25"
             id="seat"
             aria-label=""
             onChange={handleChange}
-            disabled={!values.screening}
+            disabled={!values.screenings}
           >
             <option value="">Choose...</option>
+            {seats.map((seats) => (
+              <option key={seats.id} value={seats.row_letter}>
+                {seats.row_letter}{seats.seat_num}
+              </option>
+            ))}
           </select>
+          
+          
         </div>
 
         <div className="border-bottom">
@@ -147,8 +170,11 @@ Reservation.propTypes = {
   values: PropTypes.object,
   cinema: PropTypes.array,
   movies: PropTypes.array,
+  auditorium: PropTypes.array,
+  screenings: PropTypes.array,
+  seats: PropTypes.array
   // price: PropTypes.number,
-  // auditorium: PropTypes.array,
+  
   // screening: PropTypes.array,
   // seats: PropTypes.array,
 };

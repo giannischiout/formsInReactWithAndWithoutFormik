@@ -10,12 +10,14 @@ const ReservationContainer = () => {
     handleSubmit,
     cinema,
     movies,
+    auditorium,
+    screenings,
+    seats,
     handleChange,
     response,
     values,
     //  price
-    // auditorium,
-    // screening,
+    
     // seats,
   } = useReservations(username);
 
@@ -23,12 +25,14 @@ const ReservationContainer = () => {
     handleSubmit,
     movies,
     cinema,
+    auditorium,
+    screenings,
+    seats,
     handleChange,
     response,
     values,
     //  price
-    // auditorium,
-    // screening,
+    
     // seats,
   };
 

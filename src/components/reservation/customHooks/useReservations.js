@@ -4,9 +4,9 @@ import axios from "axios";
 
 const INITIAL_STATE = {
   cinema: "",
-  auditorium: "",
   movie: "",
-  screening: "",
+  auditorium: "",
+  screenings: "",
   seat: "",
 };
 const BASE_URL = "http://localhost:4000";
@@ -15,6 +15,9 @@ export const useReservations = () => {
   const [response, setResponse] = React.useState(null);
   const [cinema, setCinema] = React.useState([]);
   const [movies, setMovies] = React.useState([]);
+  const [auditorium, setAuditorium] = React.useState([]);
+  const [screenings, setScreenings] = React.useState([]);
+  const [seats, setSeats] = React.useState([]);
 
   // const price = seats.reduce((sum, value) => sum + value).toFixed(2);
 
@@ -26,6 +29,21 @@ export const useReservations = () => {
     if (values.cinema) {
       axios.get(`${BASE_URL}/movies`).then((response) => {
         setMovies(response.data);
+      });
+    }
+    if (values.movie) {
+      axios.get(`${BASE_URL}/auditorium`).then((response) => {
+        setAuditorium(response.data);
+      });
+    }
+    if (values.auditorium) {
+      axios.get(`${BASE_URL}/screenings`).then((response) => {
+        setScreenings(response.data);
+      });
+    }
+    if (values.screenings) {
+      axios.get(`${BASE_URL}/seats`).then((response) => {
+        setSeats(response.data);
       });
     }
   }, [values]);
@@ -52,11 +70,13 @@ export const useReservations = () => {
     handleChange,
     cinema,
     movies,
+    auditorium,
+    screenings,
+    seats,
     handleSubmit,
     response,
     // price
-    // auditorium,
-    // screening,
-    // seats,
+
+    
   };
 };
