@@ -125,7 +125,7 @@ export const Reservation = ({
           >
             <option value="">Choose...</option>
             {seats.map((seats) => (
-              <option key={seats.id} value={seats.row_letter}>
+              <option key={seats.id} value={seats.row_letter+seats.seat_num}>
                 {seats.row_letter}{seats.seat_num}
               </option>
             ))}
